@@ -18,7 +18,7 @@ const HomePage = () => {
   };
 
   const heroStyle = {
-    backgroundImage: "linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/assets/foto banner.jpg')",
+    backgroundImage: "linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('./assets/banner.jpg')",
     backgroundSize: "cover",
     backgroundPosition: "center",
     height: "80vh",
