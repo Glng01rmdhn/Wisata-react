@@ -1,6 +1,23 @@
 import React from "react";
+import { motion } from "framer-motion";
+import { Link } from 'react-router-dom';
+
 
 const AboutPage = () => {
+  const navbarStyle = {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: "1rem 2rem",
+    backgroundColor: "#003f2f",
+    color: "#fff",
+  };
+
+  const navLinksStyle = {
+    display: "flex",
+    gap: "1rem",
+  };
+
   const heroStyle = {
     backgroundImage: "linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('./assets/banner.jpg')",
     backgroundSize: "cover",
@@ -65,6 +82,7 @@ const AboutPage = () => {
     borderRadius: "10px",
     boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
     textAlign: "center",
+    cursor: "pointer",
   };
 
   const ticketPriceStyle = {
@@ -83,6 +101,7 @@ const AboutPage = () => {
     width: "200px",
     textAlign: "center",
     boxShadow: "0 4px 10px rgba(0,0,0,0.2)",
+    cursor: "pointer",
   };
 
   const footerStyle = {
@@ -95,57 +114,98 @@ const AboutPage = () => {
 
   return (
     <div style={{ fontFamily: "sans-serif", backgroundColor: "#f7f7f7" }}>
+      {/* NAVBAR */}
+      <nav style={navbarStyle}>
+      <nav style={navbarStyle}>
+  <div style={{ fontSize: "1.5rem", fontWeight: "bold" }}>JungleLand</div>
+  <div style={navLinksStyle}>
+    <Link to="/" style={{ color: "#fff", textDecoration: "none" }}>Home</Link>
+    <Link to="/about" style={{ color: "#fff", textDecoration: "none" }}>About</Link>
+    <Link to="/contact" style={{ color: "#fff", textDecoration: "none" }}>Contact</Link>
+  </div>
+</nav>
+
+      </nav>
+
       <section style={heroStyle}>
-        <h1 style={heroTextStyle}>Tentang JungleLand</h1>
-        <p style={{ maxWidth: "600px", textShadow: "1px 1px 4px rgba(0,0,0,0.5)" }}>
+        <motion.h1
+          style={heroTextStyle}
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
+          Tentang JungleLand
+        </motion.h1>
+        <motion.p
+          style={{ maxWidth: "600px", textShadow: "1px 1px 4px rgba(0,0,0,0.5)" }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+        >
           Selamat datang di JungleLand! Kami adalah destinasi wisata keluarga dengan berbagai wahana seru dan pengalaman tak terlupakan.
-        </p>
+        </motion.p>
       </section>
 
-      <section style={historyStyle}>
+      <motion.section
+        style={historyStyle}
+        initial={{ y: 50, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
         <h2 style={titleStyle}>Sejarah JungleLand</h2>
         <p style={historyTextStyle}>
-          JungleLand pertama kali dibuka pada tahun 2000 dengan tujuan memberikan pengalaman wahana dan hiburan yang seru untuk seluruh keluarga. 
+          JungleLand pertama kali dibuka pada tahun 2000 dengan tujuan memberikan pengalaman wahana dan hiburan yang seru untuk seluruh keluarga.
           Dengan perkembangan yang pesat, JungleLand kini menjadi taman hiburan terbesar di Indonesia dengan lebih dari 50 wahana menarik dan area rekreasi yang luas.
         </p>
-      </section>
+      </motion.section>
 
-      <section style={facilitiesStyle}>
+      <section style={sectionStyle}>
         <h2 style={titleStyle}>Fasilitas Kami</h2>
         <div style={facilitiesStyle}>
-          <div style={facilityCardStyle}>
-            <h3>Restoran</h3>
-            <p>Berbagai pilihan kuliner lezat di area taman untuk mengisi perut Anda setelah seru-seruan di wahana.</p>
-          </div>
-          <div style={facilityCardStyle}>
-            <h3>Parkir Luas</h3>
-            <p>Area parkir yang luas dan aman untuk kendaraan pribadi Anda.</p>
-          </div>
-          <div style={facilityCardStyle}>
-            <h3>Toilet Bersih</h3>
-            <p>Fasilitas toilet yang bersih dan nyaman di berbagai titik di dalam taman.</p>
-          </div>
+          {["Restoran", "Parkir Luas", "Toilet Bersih"].map((title, index) => (
+            <motion.div
+              key={index}
+              style={facilityCardStyle}
+              whileHover={{ scale: 1.05 }}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
+            >
+              <h3>{title}</h3>
+              <p>
+                {title === "Restoran" && "Berbagai pilihan kuliner lezat di area taman untuk mengisi perut Anda setelah seru-seruan di wahana."}
+                {title === "Parkir Luas" && "Area parkir yang luas dan aman untuk kendaraan pribadi Anda."}
+                {title === "Toilet Bersih" && "Fasilitas toilet yang bersih dan nyaman di berbagai titik di dalam taman."}
+              </p>
+            </motion.div>
+          ))}
         </div>
       </section>
 
-      <section style={ticketPriceStyle}>
-        <h2 style={titleStyle } color="#003f2f">Harga Tiket</h2>
+      <section style={sectionStyle}>
+        <h2 style={titleStyle}>Harga Tiket</h2>
         <div style={ticketPriceStyle}>
-          <div style={priceCardStyle}>
-            <h3>Weekday</h3>
-            <p>Rp 150.000</p>
-            <p>Senin - Jumat</p>
-          </div>
-          <div style={priceCardStyle}>
-            <h3>Weekend</h3>
-            <p>Rp 200.000</p>
-            <p>Sabtu - Minggu</p>
-          </div>
-          <div style={priceCardStyle}>
-            <h3>Annual Pass</h3>
-            <p>Rp 1.200.000</p>
-            <p>Setahun Penuh Akses</p>
-          </div>
+          {[ 
+            { title: "Weekday", price: "Rp 150.000", detail: "Senin - Jumat" },
+            { title: "Weekend", price: "Rp 200.000", detail: "Sabtu - Minggu" },
+            { title: "Annual Pass", price: "Rp 1.200.000", detail: "Setahun Penuh Akses" },
+          ].map((ticket, index) => (
+            <motion.div
+              key={index}
+              style={priceCardStyle}
+              whileHover={{ scale: 1.1 }}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
+            >
+              <h3>{ticket.title}</h3>
+              <p>{ticket.price}</p>
+              <p>{ticket.detail}</p>
+            </motion.div>
+          ))}
         </div>
       </section>
 

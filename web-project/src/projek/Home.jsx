@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom';
+
+
 
 const HomePage = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -104,12 +107,12 @@ const HomePage = () => {
   return (
     <div style={{ fontFamily: "sans-serif", backgroundColor: "#f7f7f7" }}>
       <nav style={navbarStyle}>
-        <div style={{ fontSize: "1.5rem", fontWeight: "bold" }}>JungleLand</div>
-        <div style={navLinksStyle}>
-          <a href="#" style={{ color: "#fff", textDecoration: "none" }}>Home</a>
-          <a href="#" style={{ color: "#fff", textDecoration: "none" }}>About</a>
-          <a href="#" style={{ color: "#fff", textDecoration: "none" }}>Contact</a>
-        </div>
+      <div style={{ fontSize: "1.5rem", fontWeight: "bold" }}>JungleLand</div>
+  <div style={navLinksStyle}>
+    <Link to="/" style={{ color: "#fff", textDecoration: "none" }}>Home</Link>
+    <Link to="/about" style={{ color: "#fff", textDecoration: "none" }}>About</Link>
+    <Link to="/contact" style={{ color: "#fff", textDecoration: "none" }}>Contact</Link>
+  </div>
       </nav>
 
       <section style={heroStyle}>
